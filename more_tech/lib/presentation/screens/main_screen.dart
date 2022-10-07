@@ -10,27 +10,37 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 24),
+
       child: Row(
         children: [
-          Column(
-            children: const [
-              Profile(),
-              SizedBox(
-                height: 36,
-              ),
-              Balance(),
-              SizedBox(
-                height: 24,
-              ),
-              TransactionHistory(),
-            ],
+          Expanded(
+            flex: 1,
+            child: Column(
+              children: const [
+                Expanded(
+                  child: Profile(),
+                  flex: 2,
+                ),
+                SizedBox(
+                  height: 36,
+                ),
+                Expanded(child: Balance(),flex: 1,),
+                SizedBox(
+                  height: 24,
+                ),
+                Expanded(child: TransactionHistory(), flex: 6,),
+              ],
+            ),
           ),
           const SizedBox(
             width: 24,
           ),
-          Column(
-            children: const [NFTItems()],
+          Expanded(
+            flex: 3,
+            child: Column(
+              children: const [Expanded(child: NFTItems(),flex: 1,)],
+            ),
           ),
         ],
       ),

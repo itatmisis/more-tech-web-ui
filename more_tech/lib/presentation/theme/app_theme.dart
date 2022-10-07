@@ -4,7 +4,6 @@ import 'package:more_tech/presentation/theme/app_colors.dart';
 abstract class AppTheme {
   static ThemeData get lightTheme => ThemeData(
     scaffoldBackgroundColor: AppColors.background,
-      backgroundColor: AppColors.containerColor1,
         textTheme: const TextTheme(
             headline1: TextStyle(
               fontSize: 48,
