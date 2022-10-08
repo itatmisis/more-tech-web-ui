@@ -30,6 +30,11 @@ abstract class AppTheme {
           fontWeight: FontWeight.w500,
           color: AppColors.textWhite,
         ),
+        bodyText1: TextStyle(
+          fontSize: 20.sc,
+          fontWeight: FontWeight.w400,
+          color: AppColors.textWhite,
+        ),
         bodyText2: TextStyle(
           fontSize: 16.sc,
           fontWeight: FontWeight.w500,

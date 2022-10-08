@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
 import 'package:more_tech/presentation/theme/app_theme.dart';
 
@@ -146,9 +147,13 @@ class TransactionHistory extends StatelessWidget {
                                                 Container(
                                                   decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
-                                                      color: Colors.blue),
+                                                      gradient: AppColors.backgroundButtonGradient),
                                                   height: 25,
                                                   width: 25,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.all(5),
+                                                    child: SvgPicture.asset('assets/images/gift.svg', color: AppColors.buttonBlue1,),
+                                                  ),
                                                 ),
                                                 const SizedBox(
                                                   width: 12,
@@ -197,8 +202,7 @@ class TransactionHistory extends StatelessWidget {
                                                             const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
-                                                                color: Colors
-                                                                    .blue),
+                                                                color: AppColors.buttonBlue2),
                                                         height: 25,
                                                         width: 25,
                                                       ),

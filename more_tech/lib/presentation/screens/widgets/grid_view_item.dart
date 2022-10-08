@@ -46,42 +46,39 @@ class _GridViewItemState extends State<GridViewItem> {
                   ),
                 ),
                 if (isButton)
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.blue),
+                          child: Text(
+                            "Обменять",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2
+                                ?.copyWith(color: AppColors.textWhite),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 7,
+                      ),
+                      Expanded(
+                        child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.blue),
+                                backgroundColor: Colors.red),
+                            onPressed: () {},
                             child: Text(
-                              "Обменять",
+                              "Продать",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyText2
                                   ?.copyWith(color: AppColors.textWhite),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          width: 7,
-                        ),
-                        Expanded(
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: Colors.red),
-                              onPressed: () {},
-                              child: Text(
-                                "Продать",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(color: AppColors.textWhite),
-                              )),
-                        ),
-                      ],
-                    ),
+                            )),
+                      ),
+                    ],
                   )
                 else
                   Container(),

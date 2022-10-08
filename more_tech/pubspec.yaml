@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.5
-
+  delayed_widget: ^1.1.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
