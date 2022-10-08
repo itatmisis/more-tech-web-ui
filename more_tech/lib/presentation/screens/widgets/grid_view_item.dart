@@ -45,28 +45,33 @@ class _GridViewItemState extends State<GridViewItem> {
                     ),
                   ),
                 ),
-                if (isButton)
-                  Row(
-                    children: [
-                      Expanded(
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.blue),
-                          child: Text(
-                            "Обменять",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText2
-                                ?.copyWith(color: AppColors.textWhite),
+                AnimatedPositioned(
+                  right: 8,
+                  left: 8,
+                  bottom: isButton ? 10 : -100,
+                  duration: const Duration(milliseconds: 300),
+                  child: IntrinsicWidth(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue),
+                            child: Text(
+                              "Обменять",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.textWhite),
+                            ),
                           ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 7,
-                      ),
-                      Expanded(
-                        child: ElevatedButton(
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red),
                             onPressed: () {},
@@ -76,12 +81,13 @@ class _GridViewItemState extends State<GridViewItem> {
                                   .textTheme
                                   .bodyText2
                                   ?.copyWith(color: AppColors.textWhite),
-                            )),
-                      ),
-                    ],
-                  )
-                else
-                  Container(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
