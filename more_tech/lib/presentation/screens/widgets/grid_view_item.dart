@@ -57,6 +57,9 @@ class _GridViewItemState extends State<GridViewItem> {
                           child: ElevatedButton(
                             onPressed: () {},
                             style: ElevatedButton.styleFrom(
+                                minimumSize: Size.zero,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 0),
                                 backgroundColor: Colors.blue),
                             child: Text(
                               "Обменять",
@@ -73,6 +76,9 @@ class _GridViewItemState extends State<GridViewItem> {
                         Expanded(
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
+                                minimumSize: Size.zero,
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 12, horizontal: 0),
                                 backgroundColor: Colors.red),
                             onPressed: () {},
                             child: Text(
