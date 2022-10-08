@@ -24,10 +24,7 @@ class NFTItems extends StatelessWidget {
           children: [
             Text(
               "Ваши NFT-предметы",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline3,
+              style: Theme.of(context).textTheme.headline3,
               textAlign: TextAlign.left,
             ),
             const SizedBox(
@@ -36,10 +33,11 @@ class NFTItems extends StatelessWidget {
             Expanded(
               child: GridView.builder(
                 scrollDirection: Axis.vertical,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 5,
-                    mainAxisSpacing: 16,
-                    crossAxisSpacing: 12,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 229 / 305,
                 ),
                 itemCount: 15,
                 itemBuilder: (context, index) {

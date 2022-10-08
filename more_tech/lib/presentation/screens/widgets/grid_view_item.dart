@@ -15,16 +15,17 @@ class GridViewItem extends StatefulWidget {
 class _GridViewItemState extends State<GridViewItem> {
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 305/229,
+    return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
-            flex: 2,
+          AspectRatio(
+            aspectRatio: 242/229,
             child: Container(
-              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-              child: SvgPicture.asset("assets/images/nft.svg"),
+
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8)),
+              child: Image.asset("assets/images/nft.png", fit: BoxFit.fill,),
             ),
           ),
           const SizedBox(
