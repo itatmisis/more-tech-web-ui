@@ -39,7 +39,7 @@ class MainScreen extends StatelessWidget {
           Expanded(
             flex: 3,
             child: Column(
-              children: const [Expanded(child: NFTItems(),flex: 1,)],
+              children:  [Expanded(child: NFTItems(),flex: 1,)],
             ),
           ),
         ],
