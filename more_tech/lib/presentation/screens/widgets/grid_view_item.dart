@@ -13,19 +13,79 @@ class GridViewItem extends StatefulWidget {
 }
 
 class _GridViewItemState extends State<GridViewItem> {
+  bool isButton = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          AspectRatio(
-            aspectRatio: 242/229,
-            child: Container(
-
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8)),
-              child: Image.asset("assets/images/nft.png", fit: BoxFit.fill,),
+          MouseRegion(
+            onEnter: (_) {
+              setState(() {
+                isButton = true;
+              });
+            },
+            onExit: (_) {
+              setState(() {
+                isButton = false;
+              });
+            },
+            child: Stack(
+              children: [
+                AspectRatio(
+                  aspectRatio: 242 / 229,
+                  child: Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(8)),
+                    child: Image.asset(
+                      "assets/images/nft.png",
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                if (isButton)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: ElevatedButton(
+                            onPressed: () {},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.blue),
+                            child: Text(
+                              "Обменять",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2
+                                  ?.copyWith(color: AppColors.textWhite),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 7,
+                        ),
+                        Expanded(
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: Colors.red),
+                              onPressed: () {},
+                              child: Text(
+                                "Продать",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(color: AppColors.textWhite),
+                              )),
+                        ),
+                      ],
+                    ),
+                  )
+                else
+                  Container(),
+              ],
             ),
           ),
           const SizedBox(
