@@ -24,23 +24,28 @@ class NFTItems extends StatelessWidget {
           children: [
             Text(
               "Ваши NFT-предметы",
-              style: Theme.of(context).textTheme.headline3,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline3,
               textAlign: TextAlign.left,
             ),
             const SizedBox(
               height: 24,
             ),
-            GridView.builder(
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 5,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 12,
+            Expanded(
+              child: GridView.builder(
+                scrollDirection: Axis.vertical,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 5,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 12,
+                ),
+                itemCount: 15,
+                itemBuilder: (context, index) {
+                  return GridViewItem(nft: nft[index]);
+                },
               ),
-              itemCount: 15,
-              itemBuilder: (context, index) {
-                return GridViewItem(nft: nft[index]);
-              },
             ),
           ],
         ),
