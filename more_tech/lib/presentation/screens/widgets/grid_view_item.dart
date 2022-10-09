@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:more_tech/domain/models/NFT_model.dart';
+import 'package:more_tech/presentation/screens/home_panel.dart';
+import 'package:more_tech/presentation/screens/widgets/transaction_history_widget.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class GridViewItem extends StatefulWidget {
   final NFT nft;
@@ -14,6 +17,12 @@ class GridViewItem extends StatefulWidget {
 
 class _GridViewItemState extends State<GridViewItem> {
   bool isButton = false;
+
+  String spaceSeparateNumbers(String res) {
+    final result = res.replaceAllMapped(
+        RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'), (Match m) => '${m[1]} ');
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,42 +63,51 @@ class _GridViewItemState extends State<GridViewItem> {
                     child: Row(
                       children: [
                         Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size.zero,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 0),
-                                backgroundColor: Colors.blue),
-                            child: Text(
-                              "Обменять",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.textWhite),
-                            ),
+                          child: Consumer<HomePanelModel>(
+                            builder: (_, model, __) => ElevatedButton(
+                              onPressed: ()=>model.showModalMenu = true,
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: Size.zero,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 12, horizontal: 0),
+                                  backgroundColor: Colors.blue),
+                              child: Text(
+                                "Обменять",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(color: AppColors.textWhite),
+                              ),
+                            )
                           ),
                         ),
                         const SizedBox(
                           width: 7,
                         ),
-                        Expanded(
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                minimumSize: Size.zero,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 12, horizontal: 0),
-                                backgroundColor: Colors.red),
-                            onPressed: () {},
-                            child: Text(
-                              "Продать",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2
-                                  ?.copyWith(color: AppColors.textWhite),
+                        Consumer<HomePanelModel>(
+                          builder: (_, model, __) => Expanded(
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  minimumSize: Size.zero,
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 12, horizontal: 0),
+                                  backgroundColor: Colors.red),
+                              onPressed: () {
+                                model.history[0].transactions.insert(0, Transaction(time: '${DateTime.now().hour}:${DateTime.now().minute}', comment: 'Продажа', lastBalance: spaceSeparateNumbers(model.money.toStringAsFixed(2)), resultBalance: spaceSeparateNumbers((model.money+widget.nft.cost).toStringAsFixed(2)), result: BalanceChange(widget.nft.cost.toInt())));
+                                model.money+=widget.nft.cost;
+                                model.updateHistory();
+                                model.nftCount--;
+                              },
+                              child: Text(
+                                "Продать",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyText2
+                                    ?.copyWith(color: AppColors.textWhite),
+                              ),
                             ),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),

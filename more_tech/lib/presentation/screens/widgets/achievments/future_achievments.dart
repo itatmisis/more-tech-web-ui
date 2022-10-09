@@ -8,7 +8,6 @@ class FutureAchievments extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 500,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: AppColors.containerColor1,

@@ -71,16 +71,11 @@ class Achievments extends StatelessWidget {
           ),
           Expanded(
             flex: 2,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                DelayedWidget(
-                  child: const FutureAchievments(),
-                  delayDuration: const Duration(milliseconds: 200),
-                  animationDuration: const Duration(seconds: 1),
-                  animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
-                ),
-              ],
+            child: DelayedWidget(
+              delayDuration: const Duration(milliseconds: 200),
+              animationDuration: const Duration(seconds: 1),
+              animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+              child: const FutureAchievments(),
             ),
           ),
         ],

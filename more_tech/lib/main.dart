@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:more_tech/presentation/screens/achievements_screen.dart';
 import 'package:more_tech/presentation/screens/activity_panel.dart';
+import 'package:more_tech/presentation/screens/login_screen.dart';
 
 import 'presentation/screens/main_screen.dart';
 import 'presentation/theme/app_theme.dart';
@@ -17,9 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home:  Scaffold(
-        body: MainScreen(),
-      ),
+      routes: {
+        'login': (_) => Scaffold(body:  LoginScreen(),),
+        'home': (_) => Scaffold(body: MainScreen(),)
+      },
+      initialRoute: 'login',
     );
   }
 }

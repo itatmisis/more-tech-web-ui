@@ -31,7 +31,7 @@ class Balance extends StatelessWidget {
                 children: [
                   Text('Ваш баланс', style: Theme.of(context).textTheme.headline4!.copyWith(color: AppColors.textGray),),
                   const SizedBox(height: 8),
-                  Text('${spaceSeparateNumbers(balance.toString())} ₽', style: Theme.of(context).textTheme.headline2),
+                  Text('${spaceSeparateNumbers(balance.toStringAsFixed(2))} ₽', style: Theme.of(context).textTheme.headline2),
                 ],
               ),
               SizedBox(

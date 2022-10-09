@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.5
+  provider: any
   percent_indicator: ^4.2.2
   delayed_widget: ^1.1.2
   http: ^0.13.3
@@ -69,7 +70,6 @@ flutter:
 
   assets:
     - assets/images/
-    - assets/icons/
   fonts:
     - family: Roboto Flex
       fonts:

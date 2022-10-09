@@ -9,12 +9,83 @@ import 'package:more_tech/presentation/screens/widgets/profile_widget/profile_wi
 import 'package:more_tech/presentation/screens/widgets/topbar.dart';
 import 'package:more_tech/presentation/screens/widgets/transaction_history_widget.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
+import 'package:provider/provider.dart';
 
-import 'widgets/home_panel_overlay/transaction_screen.dart';
+import 'widgets/home_panel_overlay/transaction_screen/transaction_screen.dart';
+
+class HomePanelModel extends ChangeNotifier {
+  bool _showModalMenu = false;
+
+  double _money = 497939.12;
+
+  List<TransactionDay> history = [ TransactionDay(
+      'Сегодня',
+      [
+        Transaction(
+            time: '14:02',
+            comment: 'Награда',
+            lastBalance: '496 939,12',
+            resultBalance: '497 939,12',
+            result: BalanceChange(100)),
+        Transaction(
+            time: '14:02',
+            comment: 'Награда',
+            lastBalance: '496 939,12',
+            resultBalance: '497 939,12',
+            result: BalanceChange(100))
+      ],
+      true), TransactionDay(
+      'Вчера',
+      [
+        Transaction(
+            time: '14:02',
+            comment: 'Награда',
+            lastBalance: '496 939,12',
+            resultBalance: '497 939,12',
+            result: BalanceChange(100)),
+        Transaction(
+            time: '14:02',
+            comment: 'Награда',
+            lastBalance: '496 939,12',
+            resultBalance: '497 939,12',
+            result: NftChange('NFTname')),
+        Transaction(
+            time: '14:02',
+            comment: 'Награда',
+            lastBalance: '496 939,12',
+            resultBalance: '497 939,12',
+            result: BalanceChange(100))
+      ],
+    )];
+  int _nftCount = 20;
+
+  int get nftCount => _nftCount;
+
+  set nftCount(int value) {
+    _nftCount = value;
+    notifyListeners();
+  }
+
+  void updateHistory() {
+    notifyListeners();
+  }
+
+  double get money => _money;
+
+  set money(double value) {
+    _money = value;
+    notifyListeners();
+  }
+
+  bool get showModalMenu => _showModalMenu;
+
+  set showModalMenu(bool value) {
+    _showModalMenu = value;
+    notifyListeners();
+  }
+}
 
 class HomePanel extends StatefulWidget {
-  int current = 0;
-  bool showModalMenu = true;
 
   HomePanel({Key? key}) : super(key: key);
 
@@ -62,7 +133,9 @@ class _HomePanelState extends State<HomePanel> {
                               // Not required
                               animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                               // No
-                              child: const Balance()),
+                              child: Consumer<HomePanelModel>(
+                                  builder: (_,model,__) => Balance(balance: model.money)
+                              )),
                         ),
                         const SizedBox(
                           height: 24,
@@ -70,79 +143,41 @@ class _HomePanelState extends State<HomePanel> {
                         Expanded(
                             flex: 6,
                             child: DelayedWidget(
-                              delayDuration: const Duration(milliseconds: 800),
-                              // Not required
-                              animationDuration: const Duration(seconds: 1),
-                              // Not required
-                              animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
-                              // No
-                              child: TransactionHistory(
-                                data: [
-                                  TransactionDay(
-                                      'Сегодня',
-                                      [
-                                        Transaction(
-                                            time: '14:02',
-                                            comment: 'Награда',
-                                            lastBalance: '496 939,12',
-                                            resultBalance: '497 939,12',
-                                            result: BalanceChange(100)),
-                                        Transaction(
-                                            time: '14:02',
-                                            comment: 'Награда',
-                                            lastBalance: '496 939,12',
-                                            resultBalance: '497 939,12',
-                                            result: BalanceChange(100))
-                                      ],
-                                      true),
-                                  TransactionDay(
-                                    'Вчера',
-                                    [
-                                      Transaction(
-                                          time: '14:02',
-                                          comment: 'Награда',
-                                          lastBalance: '496 939,12',
-                                          resultBalance: '497 939,12',
-                                          result: BalanceChange(100)),
-                                      Transaction(
-                                          time: '14:02',
-                                          comment: 'Награда',
-                                          lastBalance: '496 939,12',
-                                          resultBalance: '497 939,12',
-                                          result: NftChange('NFTname')),
-                                      Transaction(
-                                          time: '14:02',
-                                          comment: 'Награда',
-                                          lastBalance: '496 939,12',
-                                          resultBalance: '497 939,12',
-                                          result: BalanceChange(100))
-                                    ],
-                                  )
-                                ],
-                              ),
+                                delayDuration: const Duration(milliseconds: 800),
+                                // Not required
+                                animationDuration: const Duration(seconds: 1),
+                                // Not required
+                                animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
+                                // No
+                                child: Consumer<HomePanelModel>(
+                                  builder: (_, model, __) => TransactionHistory(
+                                    data: model.history,
+                                  ),
+                                )
                             )),
                       ],
                     ),
-                    AnimatedSwitcher(
-                      transitionBuilder:
-                          (Widget child, Animation<double> animation) {
-                        return FadeTransition(
-                          child: child,
-                          opacity: animation,
-                        );
-                      },
-                      duration: Duration(milliseconds: 200),
-                      child: widget.showModalMenu
-                          ? Center(
-                        child: BlurWindow(
-                          child: TransactionScreen(
-                            onClose: () => setState(() {
-                              widget.showModalMenu = false;
-                            }),
-                          )
+                    Consumer<HomePanelModel>(
+                        builder: (_, model, __) => AnimatedSwitcher(
+                          transitionBuilder:
+                              (Widget child, Animation<double> animation) {
+                            return FadeTransition(
+                              child: child,
+                              opacity: animation,
+                            );
+                          },
+                          duration: Duration(milliseconds: 200),
+                          child: model.showModalMenu
+                              ? Center(
+                              child: BlurWindow(
+                                  child: TransactionScreen(
+                                    onClose: () => setState(() {
+                                      model.showModalMenu = false;
+                                    }),
+                                  )
+                              )
+                          ) : SizedBox(),
                         )
-                      )
-                          : SizedBox(),
                     )
                   ],
                 )),
