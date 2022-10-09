@@ -21,6 +21,7 @@ class Profile extends StatelessWidget {
                       decoration: const BoxDecoration(
                           color: Colors.yellow, shape: BoxShape.circle),
                       margin: EdgeInsets.all(3.5),
+                      child: Image.asset('assets/images/avatar.png'),
                     ),
                   ),
                   const Align(
@@ -29,7 +30,7 @@ class Profile extends StatelessWidget {
                         width: double.infinity,
                         height: double.infinity,
                         child: CustomCircularProgressIndicator(
-                          value: 0.5,
+                          value: 0.78,
                           strokeWidth: 7,
                           color: AppColors.buttonBlue2,
                         ),
