@@ -18,11 +18,14 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       routes: {
-        'login': (_) => Scaffold(body:  LoginScreen(),),
-        'home': (_) => Scaffold(body: MainScreen(),)
+        'login': (_) => Scaffold(
+              body: LoginScreen(),
+            ),
+        'home': (_) => Scaffold(
+              body: MainScreen(),
+            )
       },
       initialRoute: 'login',
     );
   }
 }
-

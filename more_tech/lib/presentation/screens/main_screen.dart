@@ -29,53 +29,46 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  
-  List panels = [HomePanel(), const ActivityPanel(),const Achievments()];
-  
+  List panels = [HomePanel(), const ActivityPanel(), const Achievments()];
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MainScreenModel>(
-      create: (_) => MainScreenModel(),
-      builder: (_, __) => ChangeNotifierProvider<HomePanelModel>(
-        create: (_) => HomePanelModel(),
-        builder: (_, __) => ChangeNotifierProvider<ActivityPanelModel>(
-            create: (_) => ActivityPanelModel(),
-          builder: (_, __) => Consumer<MainScreenModel>(
-              builder: (_, model, __) => Padding(
-                  padding: const EdgeInsets.only(top: 10),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                          height: 60,
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 24),
-                            child: Topbar(
-                              currentPage: model.currentPage,
-                              onTap: (i) {
-                                setState(() {
-                                  model.currentPage = i;
-                                });
-                              },
-                            ),
-                          )
-                      ),
-                      Expanded(
-                          child: AnimatedSwitcher(
-                              transitionBuilder: (Widget child, Animation<double> animation) {
-                                return FadeTransition(
-                                  child: child,
-                                  opacity: animation,
-                                );
-                              },
-                              duration: const Duration(milliseconds: 200),
-                              child: panels[model.currentPage]
-                          )
-                      )
-                    ],
-                  ))
-          )
-        )
-      )
-    );
+        create: (_) => MainScreenModel(),
+        builder: (_, __) => ChangeNotifierProvider<HomePanelModel>(
+            create: (_) => HomePanelModel(),
+            builder: (_, __) => ChangeNotifierProvider<ActivityPanelModel>(
+                create: (_) => ActivityPanelModel(),
+                builder: (_, __) => Consumer<MainScreenModel>(
+                    builder: (_, model, __) => Padding(
+                        padding: const EdgeInsets.only(top: 10),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                                height: 60,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 24),
+                                  child: Topbar(
+                                    currentPage: model.currentPage,
+                                    onTap: (i) {
+                                      setState(() {
+                                        model.currentPage = i;
+                                      });
+                                    },
+                                  ),
+                                )),
+                            Expanded(
+                                child: AnimatedSwitcher(
+                                    transitionBuilder: (Widget child,
+                                        Animation<double> animation) {
+                                      return FadeTransition(
+                                        child: child,
+                                        opacity: animation,
+                                      );
+                                    },
+                                    duration: const Duration(milliseconds: 200),
+                                    child: panels[model.currentPage]))
+                          ],
+                        ))))));
   }
 }

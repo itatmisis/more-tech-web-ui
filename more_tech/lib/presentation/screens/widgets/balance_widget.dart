@@ -29,9 +29,16 @@ class Balance extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Ваш баланс', style: Theme.of(context).textTheme.headline4!.copyWith(color: AppColors.textGray),),
+                  Text(
+                    'Ваш баланс',
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline4!
+                        .copyWith(color: AppColors.textGray),
+                  ),
                   const SizedBox(height: 8),
-                  Text('${spaceSeparateNumbers(balance.toStringAsFixed(2))} ₽', style: Theme.of(context).textTheme.headline2),
+                  Text('${spaceSeparateNumbers(balance.toStringAsFixed(2))} ₽',
+                      style: Theme.of(context).textTheme.headline2),
                 ],
               ),
               SizedBox(
@@ -44,12 +51,11 @@ class Balance extends StatelessWidget {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size.zero,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 18),
+                            padding: EdgeInsets.symmetric(vertical: 18),
                             backgroundColor: Colors.red,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        )),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            )),
                         onPressed: () {},
                         child: Text(
                           "Отправить",
@@ -69,8 +75,7 @@ class Balance extends StatelessWidget {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                             minimumSize: Size.zero,
-                            padding: EdgeInsets.symmetric(
-                                vertical: 18),
+                            padding: EdgeInsets.symmetric(vertical: 18),
                             backgroundColor: Colors.blue,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -89,7 +94,6 @@ class Balance extends StatelessWidget {
               )
             ],
           ),
-        )
-    );
+        ));
   }
 }

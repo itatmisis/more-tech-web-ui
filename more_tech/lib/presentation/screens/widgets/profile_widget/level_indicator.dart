@@ -7,7 +7,6 @@ const double _kMinCircularProgressIndicatorSize = 36.0;
 const int _kIndeterminateLinearDuration = 1800;
 const int _kIndeterminateCircularDuration = 1333 * 2222;
 
-
 enum _ActivityIndicatorType { material, adaptive }
 
 abstract class ProgressIndicator extends StatefulWidget {
@@ -102,7 +101,8 @@ abstract class ProgressIndicator extends StatefulWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(PercentProperty('value', value, showName: false, ifNull: '<indeterminate>'));
+    properties.add(PercentProperty('value', value,
+        showName: false, ifNull: '<indeterminate>'));
   }
 
   Widget _buildSemanticsWrapper({
@@ -131,12 +131,17 @@ class _CustomCircularProgressIndicatorPainter extends CustomPainter {
     required this.offsetValue,
     required this.rotationValue,
     required this.strokeWidth,
-  }) : arcStart = value != null
-      ? _startAngle
-      : _startAngle + tailValue * 3 / 2 * math.pi + rotationValue * math.pi * 2.0 + offsetValue * 0.5 * math.pi,
+  })  : arcStart = value != null
+            ? _startAngle
+            : _startAngle +
+                tailValue * 3 / 2 * math.pi +
+                rotationValue * math.pi * 2.0 +
+                offsetValue * 0.5 * math.pi,
         arcSweep = value != null
             ? clampDouble(value, 0.0, 1.0) * _sweep
-            : math.max(headValue * 3 / 2 * math.pi - tailValue * 3 / 2 * math.pi, _epsilon);
+            : math.max(
+                headValue * 3 / 2 * math.pi - tailValue * 3 / 2 * math.pi,
+                _epsilon);
 
   final Color? backgroundColor;
   final Color valueColor;
@@ -171,7 +176,8 @@ class _CustomCircularProgressIndicatorPainter extends CustomPainter {
       canvas.drawArc(Offset.zero & size, 0, _sweep, false, backgroundPaint);
     }
 
-    if (value == null) { // Indeterminate
+    if (value == null) {
+      // Indeterminate
       paint.strokeCap = StrokeCap.square;
     }
 
@@ -180,14 +186,14 @@ class _CustomCircularProgressIndicatorPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_CustomCircularProgressIndicatorPainter oldPainter) {
-    return oldPainter.backgroundColor != backgroundColor
-        || oldPainter.valueColor != valueColor
-        || oldPainter.value != value
-        || oldPainter.headValue != headValue
-        || oldPainter.tailValue != tailValue
-        || oldPainter.offsetValue != offsetValue
-        || oldPainter.rotationValue != rotationValue
-        || oldPainter.strokeWidth != strokeWidth;
+    return oldPainter.backgroundColor != backgroundColor ||
+        oldPainter.valueColor != valueColor ||
+        oldPainter.value != value ||
+        oldPainter.headValue != headValue ||
+        oldPainter.tailValue != tailValue ||
+        oldPainter.offsetValue != offsetValue ||
+        oldPainter.rotationValue != rotationValue ||
+        oldPainter.strokeWidth != strokeWidth;
   }
 }
 
@@ -240,10 +246,13 @@ class CustomCircularProgressIndicator extends ProgressIndicator {
   final double strokeWidth;
 
   @override
-  State<CustomCircularProgressIndicator> createState() => _CustomCircularProgressIndicatorState();
+  State<CustomCircularProgressIndicator> createState() =>
+      _CustomCircularProgressIndicatorState();
 }
 
-class _CustomCircularProgressIndicatorState extends State<CustomCircularProgressIndicator> with SingleTickerProviderStateMixin {
+class _CustomCircularProgressIndicatorState
+    extends State<CustomCircularProgressIndicator>
+    with SingleTickerProviderStateMixin {
   static const int _pathCount = _kIndeterminateCircularDuration ~/ 1333;
   static const int _rotationCount = _kIndeterminateCircularDuration ~/ 2222;
 
@@ -257,8 +266,10 @@ class _CustomCircularProgressIndicatorState extends State<CustomCircularProgress
   ).chain(CurveTween(
     curve: const SawTooth(_pathCount),
   ));
-  static final Animatable<double> _offsetTween = CurveTween(curve: const SawTooth(_pathCount));
-  static final Animatable<double> _rotationTween = CurveTween(curve: const SawTooth(_rotationCount));
+  static final Animatable<double> _offsetTween =
+      CurveTween(curve: const SawTooth(_pathCount));
+  static final Animatable<double> _rotationTween =
+      CurveTween(curve: const SawTooth(_rotationCount));
 
   late AnimationController _controller;
 
@@ -295,11 +306,13 @@ class _CustomCircularProgressIndicatorState extends State<CustomCircularProgress
     return CupertinoActivityIndicator(key: widget.key, color: tickColor);
   }
 
-  Widget _buildMaterialIndicator(BuildContext context, double headValue, double tailValue, double offsetValue, double rotationValue) {
+  Widget _buildMaterialIndicator(BuildContext context, double headValue,
+      double tailValue, double offsetValue, double rotationValue) {
     final ProgressIndicatorThemeData defaults = Theme.of(context).useMaterial3
         ? _CircularProgressIndicatorDefaultsM3(context)
         : _CircularProgressIndicatorDefaultsM2(context);
-    final Color? trackColor = widget.backgroundColor ?? ProgressIndicatorTheme.of(context).circularTrackColor;
+    final Color? trackColor = widget.backgroundColor ??
+        ProgressIndicatorTheme.of(context).circularTrackColor;
 
     return widget._buildSemanticsWrapper(
       context: context,
@@ -311,9 +324,11 @@ class _CustomCircularProgressIndicatorState extends State<CustomCircularProgress
         child: CustomPaint(
           painter: _CustomCircularProgressIndicatorPainter(
             backgroundColor: trackColor,
-            valueColor: widget._getValueColor(context, defaultColor: defaults.color),
+            valueColor:
+                widget._getValueColor(context, defaultColor: defaults.color),
             value: widget.value, // may be null
-            headValue: headValue, // remaining arguments are ignored if widget.value is not null
+            headValue:
+                headValue, // remaining arguments are ignored if widget.value is not null
             tailValue: tailValue,
             offsetValue: offsetValue,
             rotationValue: rotationValue,

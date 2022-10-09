@@ -33,22 +33,21 @@ class NFTItems extends StatelessWidget {
               height: 24,
             ),
             Expanded(
-              child: Consumer<HomePanelModel>(
-                builder: (_, model, __) => GridView.builder(
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 12,
-                    childAspectRatio: 229 / 305,
-                  ),
-                  itemCount: model.nftCount,
-                  itemBuilder: (context, index) {
-                    return GridViewItem(nft: nft[index]);
-                  },
+                child: Consumer<HomePanelModel>(
+              builder: (_, model, __) => GridView.builder(
+                scrollDirection: Axis.vertical,
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 12,
+                  childAspectRatio: 229 / 305,
                 ),
-              )
-            ),
+                itemCount: model.nftCount,
+                itemBuilder: (context, index) {
+                  return GridViewItem(nft: nft[index]);
+                },
+              ),
+            )),
           ],
         ),
       ),

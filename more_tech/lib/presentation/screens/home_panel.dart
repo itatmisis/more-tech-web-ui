@@ -18,23 +18,25 @@ class HomePanelModel extends ChangeNotifier {
 
   double _money = 497939.12;
 
-  List<TransactionDay> history = [ TransactionDay(
-      'Сегодня',
-      [
-        Transaction(
-            time: '14:02',
-            comment: 'Награда',
-            lastBalance: '496 939,12',
-            resultBalance: '497 939,12',
-            result: BalanceChange(100)),
-        Transaction(
-            time: '14:02',
-            comment: 'Награда',
-            lastBalance: '496 939,12',
-            resultBalance: '497 939,12',
-            result: BalanceChange(100))
-      ],
-      true), TransactionDay(
+  List<TransactionDay> history = [
+    TransactionDay(
+        'Сегодня',
+        [
+          Transaction(
+              time: '14:02',
+              comment: 'Награда',
+              lastBalance: '496 939,12',
+              resultBalance: '497 939,12',
+              result: BalanceChange(100)),
+          Transaction(
+              time: '14:02',
+              comment: 'Награда',
+              lastBalance: '496 939,12',
+              resultBalance: '497 939,12',
+              result: BalanceChange(100))
+        ],
+        true),
+    TransactionDay(
       'Вчера',
       [
         Transaction(
@@ -56,7 +58,8 @@ class HomePanelModel extends ChangeNotifier {
             resultBalance: '497 939,12',
             result: BalanceChange(100))
       ],
-    )];
+    )
+  ];
   int _nftCount = 20;
 
   int get nftCount => _nftCount;
@@ -86,7 +89,6 @@ class HomePanelModel extends ChangeNotifier {
 }
 
 class HomePanel extends StatefulWidget {
-
   HomePanel({Key? key}) : super(key: key);
 
   @override
@@ -134,8 +136,8 @@ class _HomePanelState extends State<HomePanel> {
                               animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
                               // No
                               child: Consumer<HomePanelModel>(
-                                  builder: (_,model,__) => Balance(balance: model.money)
-                              )),
+                                  builder: (_, model, __) =>
+                                      Balance(balance: model.money))),
                         ),
                         const SizedBox(
                           height: 24,
@@ -143,7 +145,8 @@ class _HomePanelState extends State<HomePanel> {
                         Expanded(
                             flex: 6,
                             child: DelayedWidget(
-                                delayDuration: const Duration(milliseconds: 800),
+                                delayDuration:
+                                    const Duration(milliseconds: 800),
                                 // Not required
                                 animationDuration: const Duration(seconds: 1),
                                 // Not required
@@ -153,32 +156,29 @@ class _HomePanelState extends State<HomePanel> {
                                   builder: (_, model, __) => TransactionHistory(
                                     data: model.history,
                                   ),
-                                )
-                            )),
+                                ))),
                       ],
                     ),
                     Consumer<HomePanelModel>(
                         builder: (_, model, __) => AnimatedSwitcher(
-                          transitionBuilder:
-                              (Widget child, Animation<double> animation) {
-                            return FadeTransition(
-                              child: child,
-                              opacity: animation,
-                            );
-                          },
-                          duration: Duration(milliseconds: 200),
-                          child: model.showModalMenu
-                              ? Center(
-                              child: BlurWindow(
-                                  child: TransactionScreen(
-                                    onClose: () => setState(() {
-                                      model.showModalMenu = false;
-                                    }),
-                                  )
-                              )
-                          ) : SizedBox(),
-                        )
-                    )
+                              transitionBuilder:
+                                  (Widget child, Animation<double> animation) {
+                                return FadeTransition(
+                                  child: child,
+                                  opacity: animation,
+                                );
+                              },
+                              duration: Duration(milliseconds: 200),
+                              child: model.showModalMenu
+                                  ? Center(
+                                      child: BlurWindow(
+                                          child: TransactionScreen(
+                                      onClose: () => setState(() {
+                                        model.showModalMenu = false;
+                                      }),
+                                    )))
+                                  : SizedBox(),
+                            ))
                   ],
                 )),
             const SizedBox(

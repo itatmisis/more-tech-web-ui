@@ -52,18 +52,21 @@ class _AchievmentItemState extends State<AchievmentItem> {
                 .bodyText2
                 ?.copyWith(color: AppColors.textGray),
           ),
-          SizedBox(height: 4,),
-          if(widget.future)LinearPercentIndicator(
-            backgroundColor: AppColors.containerColor2,
-            padding: EdgeInsets.zero,
-            width: 400,
-            animation: true,
-            lineHeight: 7.0,
-            animationDuration: 1500,
-            percent: 0.65,
-            barRadius: const Radius.circular(16),
-            progressColor: AppColors.buttonBlue2,
+          SizedBox(
+            height: 4,
           ),
+          if (widget.future)
+            LinearPercentIndicator(
+              backgroundColor: AppColors.containerColor2,
+              padding: EdgeInsets.zero,
+              width: 400,
+              animation: true,
+              lineHeight: 7.0,
+              animationDuration: 1500,
+              percent: 0.65,
+              barRadius: const Radius.circular(16),
+              progressColor: AppColors.buttonBlue2,
+            ),
         ],
       ),
     );

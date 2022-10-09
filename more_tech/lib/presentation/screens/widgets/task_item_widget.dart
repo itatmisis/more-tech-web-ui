@@ -5,9 +5,9 @@ import 'package:more_tech/presentation/theme/app_colors.dart';
 class TaskItem extends StatefulWidget {
   const TaskItem(
       {Key? key,
-      required this.reward,
-      required this.title,
-      required this.subtitle})
+        required this.reward,
+        required this.title,
+        required this.subtitle})
       : super(key: key);
   final int reward;
   final String title;
@@ -34,7 +34,7 @@ class _TaskItemState extends State<TaskItem> {
           ),
           decoration: BoxDecoration(
             color:
-                isCheck ? AppColors.containerColor2 : const Color(0xFF003C65),
+            isCheck ? AppColors.containerColor2 : const Color(0xFF003C65),
             shape: BoxShape.circle,
           ),
           child: AnimatedSwitcher(
@@ -69,23 +69,23 @@ class _TaskItemState extends State<TaskItem> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.containerColor2),
-        child: Expanded(
-          child: Row(
-            children: [
-              //Image.asset("assets/images/rub.png"),
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: const BoxDecoration(
-                  color: AppColors.buttonBlue2,
-                  shape: BoxShape.circle,
-                ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            //Image.asset("assets/images/rub.png"),
+            Container(
+              width: 20,
+              height: 20,
+              decoration: const BoxDecoration(
+                color: AppColors.buttonBlue2,
+                shape: BoxShape.circle,
               ),
-              const SizedBox(
-                width: 8,
-              ),
-              Text("+${widget.reward} ₽")
-            ],
-          ),
+            ),
+            const SizedBox(
+              width: 8,
+            ),
+            Text("+${widget.reward} ₽")
+          ],
         ),
       ),
     );

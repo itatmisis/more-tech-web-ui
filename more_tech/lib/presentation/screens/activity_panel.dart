@@ -7,7 +7,7 @@ import 'package:provider/provider.dart';
 
 import 'widgets/blur_window.dart';
 
-class ActivityPanelModel extends ChangeNotifier{
+class ActivityPanelModel extends ChangeNotifier {
   bool _showModalMenu = false;
 
   bool get showModalMenu => _showModalMenu;
@@ -28,68 +28,78 @@ class ActivityPanel extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            flex: 1,
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Ваша панель активности',
-                      style: Theme.of(context).textTheme.headline1,
-                    ),
-                    const SizedBox(
-                      height: 36,
-                    ),
-                    Expanded(
-                      child: const Levels(),
-                    )
-                  ],
-                ),
-                Consumer<ActivityPanelModel>(
-                  builder: (_, model, __) => AnimatedSwitcher(
-                    transitionBuilder:
-                        (Widget child, Animation<double> animation) {
-                      return FadeTransition(
-                        child: child,
-                        opacity: animation,
-                      );
-                    },
-                    duration: Duration(milliseconds: 200),
-                    child: model.showModalMenu
-                        ? Center(
-                        child: BlurWindow(
-                            child: Padding(
-                              padding: EdgeInsets.all(24),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Список лидеров', style: Theme.of(context).textTheme.headline3,),
-                                      GestureDetector(
-                                        behavior: HitTestBehavior.opaque,
-                                        onTap: ()=> model.showModalMenu=false,
-                                        child: Icon(Icons.close, color: AppColors.divider,),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(height: 40,),
-                                  Expanded(
-                                    child: SingleChildScrollView(
-                                      child: Image.asset('assets/images/leaderboard.png'),
+              flex: 1,
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Ваша панель активности',
+                        style: Theme.of(context).textTheme.headline1,
+                      ),
+                      const SizedBox(
+                        height: 36,
+                      ),
+                      const Expanded(
+                        child: Levels(),
+                      )
+                    ],
+                  ),
+                  Consumer<ActivityPanelModel>(
+                      builder: (_, model, __) => AnimatedSwitcher(
+                            transitionBuilder:
+                                (Widget child, Animation<double> animation) {
+                              return FadeTransition(
+                                child: child,
+                                opacity: animation,
+                              );
+                            },
+                            duration: const Duration(milliseconds: 200),
+                            child: model.showModalMenu
+                                ? Center(
+                                    child: BlurWindow(
+                                        child: Padding(
+                                    padding: const EdgeInsets.all(24),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              'Список лидеров',
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .headline3,
+                                            ),
+                                            GestureDetector(
+                                              behavior: HitTestBehavior.opaque,
+                                              onTap: () =>
+                                                  model.showModalMenu = false,
+                                              child: const Icon(
+                                                Icons.close,
+                                                color: AppColors.divider,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 40,
+                                        ),
+                                        Expanded(
+                                          child: SingleChildScrollView(
+                                            child: Image.asset(
+                                                'assets/images/leaderboard.png'),
+                                          ),
+                                        )
+                                      ],
                                     ),
-                                  )
-                                ],
-                              ),
-                            )
-                        )
-                    ) : SizedBox(),
-                  )
-                )
-              ],
-            )
-          ),
+                                  )))
+                                : const SizedBox(),
+                          ))
+                ],
+              )),
           const SizedBox(
             width: 24,
           ),
@@ -102,7 +112,7 @@ class ActivityPanel extends StatelessWidget {
               // Not required
               animation: DelayedAnimations.SLIDE_FROM_BOTTOM,
               // No
-              child: Tasks(),
+              child: const Tasks(),
             ),
           ),
         ],

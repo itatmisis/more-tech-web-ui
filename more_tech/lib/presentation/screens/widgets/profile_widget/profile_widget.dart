@@ -44,24 +44,35 @@ class Profile extends StatelessWidget {
                       height: 30,
                       width: 80,
                       child: Center(
-                        child: Text('1230 ур.', style: Theme.of(context).textTheme.headline4),
+                        child: Text('1230 ур.',
+                            style: Theme.of(context).textTheme.headline4),
                       ),
                     ),
                   )
                 ],
               )),
-          SizedBox(width: 30,),
+          SizedBox(
+            width: 30,
+          ),
           Expanded(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('Ерошов Даниил', style: Theme.of(context).textTheme.headline1,),
-                  Text('Сотрудник', style: Theme.of(context).textTheme.headline2!.copyWith(color: AppColors.textGray),)
-                ],
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Ерошов Даниил',
+                style: Theme.of(context).textTheme.headline1,
+              ),
+              Text(
+                'Сотрудник',
+                style: Theme.of(context)
+                    .textTheme
+                    .headline2!
+                    .copyWith(color: AppColors.textGray),
               )
-          )
+            ],
+          ))
         ],
       ),
     );

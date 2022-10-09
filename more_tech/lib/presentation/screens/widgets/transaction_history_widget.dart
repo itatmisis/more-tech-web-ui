@@ -132,8 +132,8 @@ class TransactionHistory extends StatelessWidget {
                                 shrinkWrap: true,
                                 itemCount: data[index].transactions.length,
                                 itemBuilder: (__, i) => Padding(
-                                      padding:
-                                          const EdgeInsets.symmetric(vertical: 10),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -147,12 +147,17 @@ class TransactionHistory extends StatelessWidget {
                                                 Container(
                                                   decoration: const BoxDecoration(
                                                       shape: BoxShape.circle,
-                                                      gradient: AppColors.backgroundButtonGradient),
+                                                      gradient: AppColors
+                                                          .backgroundButtonGradient),
                                                   height: 25,
                                                   width: 25,
                                                   child: Padding(
                                                     padding: EdgeInsets.all(5),
-                                                    child: SvgPicture.asset('assets/images/gift.svg', color: AppColors.buttonBlue1,),
+                                                    child: SvgPicture.asset(
+                                                      'assets/images/gift.svg',
+                                                      color:
+                                                          AppColors.buttonBlue1,
+                                                    ),
                                                   ),
                                                 ),
                                                 const SizedBox(
@@ -202,7 +207,8 @@ class TransactionHistory extends StatelessWidget {
                                                             const BoxDecoration(
                                                                 shape: BoxShape
                                                                     .circle,
-                                                                color: AppColors.buttonBlue2),
+                                                                color: AppColors
+                                                                    .buttonBlue2),
                                                         height: 25,
                                                         width: 25,
                                                       ),

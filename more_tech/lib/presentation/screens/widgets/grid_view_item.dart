@@ -64,22 +64,22 @@ class _GridViewItemState extends State<GridViewItem> {
                       children: [
                         Expanded(
                           child: Consumer<HomePanelModel>(
-                            builder: (_, model, __) => ElevatedButton(
-                              onPressed: ()=>model.showModalMenu = true,
-                              style: ElevatedButton.styleFrom(
-                                  minimumSize: Size.zero,
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: 12, horizontal: 0),
-                                  backgroundColor: Colors.blue),
-                              child: Text(
-                                "Обменять",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyText2
-                                    ?.copyWith(color: AppColors.textWhite),
-                              ),
-                            )
-                          ),
+                              builder: (_, model, __) => ElevatedButton(
+                                    onPressed: () => model.showModalMenu = true,
+                                    style: ElevatedButton.styleFrom(
+                                        minimumSize: Size.zero,
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 12, horizontal: 0),
+                                        backgroundColor: Colors.blue),
+                                    child: Text(
+                                      "Обменять",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyText2
+                                          ?.copyWith(
+                                              color: AppColors.textWhite),
+                                    ),
+                                  )),
                         ),
                         const SizedBox(
                           width: 7,
@@ -93,8 +93,20 @@ class _GridViewItemState extends State<GridViewItem> {
                                       vertical: 12, horizontal: 0),
                                   backgroundColor: Colors.red),
                               onPressed: () {
-                                model.history[0].transactions.insert(0, Transaction(time: '${DateTime.now().hour}:${DateTime.now().minute}', comment: 'Продажа', lastBalance: spaceSeparateNumbers(model.money.toStringAsFixed(2)), resultBalance: spaceSeparateNumbers((model.money+widget.nft.cost).toStringAsFixed(2)), result: BalanceChange(widget.nft.cost.toInt())));
-                                model.money+=widget.nft.cost;
+                                model.history[0].transactions.insert(
+                                    0,
+                                    Transaction(
+                                        time:
+                                            '${DateTime.now().hour}:${DateTime.now().minute}',
+                                        comment: 'Продажа',
+                                        lastBalance: spaceSeparateNumbers(
+                                            model.money.toStringAsFixed(2)),
+                                        resultBalance: spaceSeparateNumbers(
+                                            (model.money + widget.nft.cost)
+                                                .toStringAsFixed(2)),
+                                        result: BalanceChange(
+                                            widget.nft.cost.toInt())));
+                                model.money += widget.nft.cost;
                                 model.updateHistory();
                                 model.nftCount--;
                               },
