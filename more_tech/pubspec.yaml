@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.1.5
+  percent_indicator: ^4.2.2
   delayed_widget: ^1.1.2
   http: ^0.13.3
   mvc_pattern: ^7.0.0
