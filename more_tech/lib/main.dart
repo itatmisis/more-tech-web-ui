@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:more_tech/presentation/screens/achievements_screen.dart';
 import 'package:more_tech/presentation/screens/activity_panel.dart';
 
 import 'presentation/screens/main_screen.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: AppTheme.lightTheme,
       home:  Scaffold(
-        body: MainScreen(),
+        body: Achievments(),
       ),
     );
   }
