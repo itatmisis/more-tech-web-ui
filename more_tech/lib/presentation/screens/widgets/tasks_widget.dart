@@ -29,13 +29,15 @@ class Tasks extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (context, index) {
-                  return const TaskItem(
-                    reward: 4000,
+                  return TaskItem(
+                    title: 'Любитель кофе ${index+1}',
+                    subtitle: "Приобрести ${3+index} чашек кофе",
+                    reward: 4000+index*1000,
                   );
                 },
                 itemCount: 5,
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
+                  return const Divider();
                 },
               ),
             ),

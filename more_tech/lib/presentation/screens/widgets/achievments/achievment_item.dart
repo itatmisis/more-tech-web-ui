@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 
 class AchievmentItem extends StatefulWidget {
   const AchievmentItem(
@@ -41,12 +42,29 @@ class _AchievmentItemState extends State<AchievmentItem> {
         widget.title,
         style: Theme.of(context).textTheme.headline4,
       ),
-      subtitle: Text(
-        widget.subtitle,
-        style: Theme.of(context)
-            .textTheme
-            .bodyText2
-            ?.copyWith(color: AppColors.textGray),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.subtitle,
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2
+                ?.copyWith(color: AppColors.textGray),
+          ),
+          SizedBox(height: 4,),
+          if(widget.future)LinearPercentIndicator(
+            backgroundColor: AppColors.containerColor2,
+            padding: EdgeInsets.zero,
+            width: 400,
+            animation: true,
+            lineHeight: 7.0,
+            animationDuration: 1500,
+            percent: 0.65,
+            barRadius: const Radius.circular(16),
+            progressColor: AppColors.buttonBlue2,
+          ),
+        ],
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:delayed_widget/delayed_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:more_tech/presentation/screens/achievements_screen.dart';
 import 'package:more_tech/presentation/screens/activity_panel.dart';
 import 'package:more_tech/presentation/screens/widgets/balance_widget.dart';
 import 'package:more_tech/presentation/screens/home_panel.dart';
@@ -19,7 +20,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   
-  List panels = [HomePanel(), ActivityPanel()];
+  List panels = [HomePanel(), const ActivityPanel(),const Achievments()];
   
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,7 @@ class _MainScreenState extends State<MainScreen> {
             SizedBox(
               height: 60,
               child: Padding(
-                padding: EdgeInsets.only(left: 24),
+                padding: const EdgeInsets.only(left: 24),
                 child: Topbar(
                   currentPage: widget.current,
                   onTap: (i) {
@@ -45,8 +46,8 @@ class _MainScreenState extends State<MainScreen> {
               child: AnimatedSwitcher(
                   transitionBuilder: (Widget child, Animation<double> animation) {
                     return FadeTransition(
-                      child: child,
                       opacity: animation,
+                      child: child,
                     );
                   },
                   duration: const Duration(milliseconds: 200),

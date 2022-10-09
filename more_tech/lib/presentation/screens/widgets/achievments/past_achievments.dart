@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:more_tech/presentation/screens/widgets/achievment_item.dart';
-import 'package:more_tech/presentation/screens/widgets/task_item_widget.dart';
+import 'package:more_tech/presentation/screens/widgets/achievments/achievment_item.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
 
-class FutureAchievments extends StatelessWidget {
-  const FutureAchievments({Key? key}) : super(key: key);
+class PastAchievments extends StatelessWidget {
+  const PastAchievments({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 600,
+      height: 400,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: AppColors.containerColor1,
@@ -20,7 +19,7 @@ class FutureAchievments extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Предстоящие",
+              "Прошедшие",
               style: Theme.of(context)
                   .textTheme
                   .headline3
@@ -30,12 +29,12 @@ class FutureAchievments extends StatelessWidget {
               child: ListView.separated(
                 itemBuilder: (context, index) {
                   return const AchievmentItem(
-                    future: true,
-                    title: "Любимец коллег",
-                    subtitle: "Подарите 7 коллегам NFT-сертификат",
+                    future: false,
+                    title: "Кофеман",
+                    subtitle: "Выполните все задания из серии Любитель кофе",
                   );
                 },
-                itemCount: 3,
+                itemCount: 5,
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider();
                 },

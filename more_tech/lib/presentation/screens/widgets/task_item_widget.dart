@@ -3,8 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:more_tech/presentation/theme/app_colors.dart';
 
 class TaskItem extends StatefulWidget {
-  const TaskItem({Key? key, required this.reward}) : super(key: key);
+  const TaskItem(
+      {Key? key,
+      required this.reward,
+      required this.title,
+      required this.subtitle})
+      : super(key: key);
   final int reward;
+  final String title;
+  final String subtitle;
 
   @override
   State<TaskItem> createState() => _TaskItemState();
@@ -45,11 +52,11 @@ class _TaskItemState extends State<TaskItem> {
         ),
       ),
       title: Text(
-        "Любитель кофе",
+        widget.title,
         style: Theme.of(context).textTheme.headline4,
       ),
       subtitle: Text(
-        "Приобрести 10  чашек кофе",
+        widget.subtitle,
         style: Theme.of(context)
             .textTheme
             .bodyText2
