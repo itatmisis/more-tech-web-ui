@@ -31,7 +31,7 @@ class _TaskItemState extends State<TaskItem> {
             shape: BoxShape.circle,
           ),
           child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 200),
+            duration: const Duration(milliseconds: 300),
             transitionBuilder: (child, animation) => FadeTransition(
               opacity: animation,
               child: ScaleTransition(scale: animation, child: child),

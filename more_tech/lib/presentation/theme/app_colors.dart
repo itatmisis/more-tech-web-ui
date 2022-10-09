@@ -13,4 +13,8 @@ class AppColors{
   static const Color buttonBlue2 = Color(0xFF3F98F3);
   static const LinearGradient backgroundButtonGradient = LinearGradient(colors: [Color(
       0xFF195F81), Color(0xFF003C65)], begin: Alignment.topCenter, end: Alignment.bottomCenter);
+
+  static const backgroundTransperent=Color(0xE5191C21);
+  static const LinearGradient mainGradient = LinearGradient(colors: [Color(
+      0xFF1AB2FF), Color(0xFF177EE5)], begin: Alignment.centerLeft, end: Alignment.centerRight);
 }

@@ -22,13 +22,71 @@ class Balance extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Ваш баланс', style: Theme.of(context).textTheme.headline4!.copyWith(color: AppColors.textGray),),
-              const SizedBox(height: 8),
-              Text('${spaceSeparateNumbers(balance.toString())} ₽', style: Theme.of(context).textTheme.headline2),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Ваш баланс', style: Theme.of(context).textTheme.headline4!.copyWith(color: AppColors.textGray),),
+                  const SizedBox(height: 8),
+                  Text('${spaceSeparateNumbers(balance.toString())} ₽', style: Theme.of(context).textTheme.headline2),
+                ],
+              ),
+              SizedBox(
+                width: 200,
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Expanded(
+                      flex: 10,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 18),
+                            backgroundColor: Colors.red,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        )),
+                        onPressed: () {},
+                        child: Text(
+                          "Отправить",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.textWhite),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      flex: 9,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsets.symmetric(
+                                vertical: 18),
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            )),
+                        child: Text(
+                          "Получить",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              ?.copyWith(color: AppColors.textWhite),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         )
